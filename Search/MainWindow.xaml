@@ -1,0 +1,102 @@
+﻿<Window x:Class="Search.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Search"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Content="Все документы" FontSize ="20" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
+        <Label Content="Найденные документы" FontSize ="20" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center"/>
+        <TabControl Grid.Row="2" Grid.Column="2">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock>Поиск</TextBlock>
+                </TabItem.Header>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Директория поиска" FontSize="20" Margin="0,0,0,10"/>
+                    <Button Content="Найти каталоги" Click="search_dir" Margin="0,10,0,0"/>
+                    <TextBlock Text="Расширение файлов" FontSize="20" Margin="0,10,0,0"/>
+                    <ComboBox Name="box" Margin="0,10,0,10">
+                        <ComboBoxItem Content="PDF"/>
+                        <ComboBoxItem Content="TXT"/>
+                        <ComboBoxItem Content="DOXC"/>
+                        <ComboBoxItem Content="JPGandPNG"/>
+                    </ComboBox>
+                    <TextBlock Text="Поиск" FontSize="20" Margin="0,0,0,10"/>
+                    <TextBox x:Name="Search" Margin="0,0,0,10"/>
+                    <Button Content="Начать поиск" Name="proc" Margin="0,0,0,10" Click="proc_Click"/>
+                    <TextBlock Text="Перетащите файлы в левое поле или введите деректорию" TextWrapping="Wrap"/>
+                </StackPanel>
+                
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock>Конвертация</TextBlock>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                    
+                        <TextBlock Margin="5">PDF</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Button Content="PDF в DOXC"  Margin="5"/>
+                        <Button Content="PDF в TXT" Margin="5"/>
+                        <Button Content="PDF в JPG"  Margin="5"/>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Button Content="PDF в POWERPOINT"  Margin="5"/>
+                        <Button Content="PDF в EXEL"  Margin="5"/>
+                    </StackPanel>
+                    <TextBlock Margin="5">DOXC</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="DOXC в PDF" Margin="5"/>
+                        <Button Content="DOXC в TXT" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Button Content="DOXC в JPG" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="DOXC в XLS" Margin="5"/>
+                        <Button Content="DOXC в HTML" Margin="5"/>
+                        
+                    </StackPanel>
+                    <StackPanel>
+                        <Button Content="DOXC в PPTX" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel>
+                            <TextBlock Text="Изображение" Margin="5"/>
+                    </StackPanel>
+                        <StackPanel>
+                            <Button Margin="5" Content="JPG or PNG в Текст" Click="Button_Click"/>
+                        </StackPanel>
+                </StackPanel>
+                </ScrollViewer>
+                
+            </TabItem>
+        </TabControl>
+
+        <ListBox Grid.Row="2" Grid.Column="1" Name="AllDoc" AllowDrop="True" DragEnter="AllDoc_DragEnter" Drop="AllDoc_Drop">
+
+        </ListBox>
+        <ListBox Grid.Row="2" Grid.Column="3" Name="Otsev">
+
+        </ListBox>
+        <ProgressBar x:Name="progr" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" Height="20" Value="0"/>
+    </Grid>
+</Window>
